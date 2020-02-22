@@ -46,7 +46,6 @@
   :bind (("M-x" . helm-M-x)
 	 ("C-x C-f" . helm-find-files)
 	 ("C-x f" . helm-recentf)
-	 ("C-SPC" . helm-dabbrev)
 	 ("M-y" . helm-show-kill-ring)
 	 ("C-x b" . helm-buffers-list))
   :bind (:map helm-map
@@ -61,10 +60,10 @@
 (electric-pair-mode)
 
 ;; Projectile
-;; (use-package projectile
-;;   :ensure t
-;;   :config
-;;   (projectile-mode 1))
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-mode 1))
 
 ;; Centralize autosave files
 (setq backup-directory-alist
