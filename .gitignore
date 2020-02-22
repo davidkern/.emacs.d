@@ -1,0 +1,15 @@
+*~
+*.elc
+auto-save-list
+recentf
+savehist
+backups
+saveplace
+eshell
+elpa
+semanticdb
+url
+.DS_Store
+projectile-bookmarks.eld
+
+
