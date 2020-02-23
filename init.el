@@ -51,7 +51,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (magit neotree flycheck-rust toml-mode lsp-ui lsp-mode company flycheck cargo rust-mode projectile helm use-package))))
+    (shell-pop magit neotree flycheck-rust toml-mode lsp-ui lsp-mode company flycheck cargo rust-mode projectile helm use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -70,6 +70,11 @@
 (tooltip-mode -1)
 (menu-bar-mode -1)
 (setq initial-frame-alist '((fullscreen . maximized)))
+
+;; Shell pop
+(use-package shell-pop
+  :ensure t
+  :bind ("C-t" . shell-pop))
 
 ;; Helm
 (use-package helm
