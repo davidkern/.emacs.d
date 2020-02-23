@@ -1,3 +1,32 @@
+;;; init.el --- David Kern's Emacs configuration
+
+;; Copyright (c) 2020
+;; Author: David Kern
+;; Keywords:
+
+;; This file is not part of GNU Emacs.
+
+;;; Commentary:
+
+;; This is my personal Emacs configuration.  If you find something useful here,
+;; I'm glad.  If you see something I can do better, I'd love to know.
+
+;;; License:
+
+;; Licensed under either of:
+;;  * Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+;;  * MIT License (http://opensource.org/licenses/MIT)
+;; at your option.
+;;
+
+;;; Contribution:
+
+;; Unless you explicitly state otherwise, any contribution intentionally submitted
+;; for inclusion in the work by you, as defined in the Apache-2.0 license, shall be
+;; dual licensed as above, without any additional terms or conditions.
+
+;;; Code:
+
 ;; Prevent white flash at startup and disable splash screen
 (set-background-color "#282c34")
 (setq inhibit-splash-screen t)
@@ -22,7 +51,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (flycheck-rust toml-mode lsp-ui lsp-mode company flycheck cargo rust-mode projectile helm use-package))))
+    (magit neotree flycheck-rust toml-mode lsp-ui lsp-mode company flycheck cargo rust-mode projectile helm use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -66,8 +95,23 @@
 ;; Projectile
 (use-package projectile
   :ensure t
+  :bind ("C-c p" . projectile-command-map)
   :config
   (projectile-mode 1))
+
+;; Neotree
+(use-package neotree
+  :ensure t
+  :bind ("<f8>" . neotree-toggle)
+  :config
+  (setq neo-smart-open t)
+  (setq projectile-switch-project-action 'neotree-projectile-action)
+  (setq neo-theme 'ascii))
+
+;; Magit
+(use-package magit
+  :ensure t
+  :bind ("C-x g" . magit-status))
 
 ;; Centralize autosave files
 (setq backup-directory-alist
@@ -120,3 +164,6 @@
 (use-package flycheck-rust
   :ensure t
   :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
+;;; init.el ends here
+
