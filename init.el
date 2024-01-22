@@ -50,8 +50,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   (quote
-    (shell-pop magit neotree flycheck-rust toml-mode lsp-ui lsp-mode company flycheck cargo rust-mode projectile helm use-package))))
+   '(vterm python-mode shell-pop magit neotree flycheck-rust toml-mode lsp-ui lsp-mode company flycheck cargo rust-mode projectile helm use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -140,18 +139,22 @@
 ;; Company - complete anything
 (use-package company
   :ensure t
-  :hook (prog-mode . company-mode)
   :config
-  (setq company-tooltip-align-annotations t)
-  (setq company-minimum-prefix-length 1))
+  (add-to-list 'company-backends 'company-capf)
+  (global-company-mode))
 
 ;; Language Server Protocol
 (use-package lsp-mode
   :ensure t
   :commands lsp
-  :config (require 'lsp-clients))
+  :hook ((python-mode . lsp)
+	 (rust-mode . lsp)))
 
 (use-package lsp-ui
+  :ensure t)
+
+;; Python
+(use-package python-mode
   :ensure t)
 
 ;; Rust
@@ -169,6 +172,10 @@
 (use-package flycheck-rust
   :ensure t
   :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
+;; Use vterm for shell
+(use-package vterm
+  :ensure t)
 
 ;;; init.el ends here
 
